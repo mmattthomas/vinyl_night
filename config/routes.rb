@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   root 'events#index'
 
-  get 'static_pages/home'
+  get 'soon' => 'static_pages#home'
   get 'static_pages/help'
-  
+
 end
