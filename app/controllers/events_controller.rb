@@ -22,8 +22,9 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event.create_user = current_user
+
     @event = Event.new(event_params)
+    @event.create_user = current_user
     @event.save
     respond_with(@event)
   end
