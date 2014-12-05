@@ -11,10 +11,6 @@
       td = f.label :name
       td = f.text_field :name, size: 50
     tr
-      td = f.label :create_user_id
-      td = f.select(:create_user_id, @users.map {|u| [u.name, u.id]})
-        /= f.number_field :create_user_id
-    tr
       td = f.label :scheduled
       td = f.date_select :scheduled
     tr
