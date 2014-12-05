@@ -1,0 +1,33 @@
+.well
+  .authform
+    = form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :put } do |f|
+      = devise_error_messages!
+      h3
+        | Edit your profile
+      .form_group
+        = f.label :email
+        = f.email_field :email, autofocus: true, required: true, class: 'form-control'
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          p
+            | Currently waiting confirmation for:
+            = resource.unconfirmed_email
+      .form_group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form_group
+        = f.label 'New Password'
+        = f.password_field :password, class: 'form-control'
+      .form_group
+        = f.label 'New Password Confirmation'
+        = f.password_field :password_password_confirmation, class: 'form-control'
+      .form_group
+        = f.label :current_password
+        i &nbsp;&nbsp;We need your current password to make any other changes to your profile
+        = f.password_field :current_password, autocomplete: "off", class: 'form-control'
+
+      .actions[style="text-align:right"]
+        = f.submit 'Update Profile', class: 'btn btn-primary'
+        | &nbsp;
+        = link_to 'Cancel Account!', registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => 'btn btn-danger'
+        | &nbsp;
+        = link_to "Back", :back, class: 'btn btn-default'

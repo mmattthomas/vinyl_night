@@ -1,0 +1,28 @@
+.well
+  p#notice = notice
+
+  p
+    strong Name:
+    = @event.name
+  p
+    strong Create user:
+    = @event.create_user_id
+  p
+    strong Scheduled:
+    = @event.scheduled
+  p
+    strong Start time:
+    = @event.start_time
+  p
+    strong End time:
+    = @event.end_time
+  p
+    strong Address:
+    = @event.address
+  p
+    strong Description:
+    = @event.description
+  - if user_signed_in?
+    = link_to 'Edit', edit_event_path(@event)
+    '|
+  = link_to 'Back', events_path

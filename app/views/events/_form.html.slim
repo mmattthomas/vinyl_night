@@ -1,0 +1,36 @@
+= form_for @event do |f|
+  - if @event.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+      ul
+        - @event.errors.full_messages.each do |message|
+          li = message
+
+  table
+    tr
+      td = f.label :name
+      td = f.text_field :name, size: 50
+    tr
+      td = f.label :create_user_id
+      td = f.select(:create_user_id, @users.map {|u| [u.name, u.id]})
+        /= f.number_field :create_user_id
+    tr
+      td = f.label :scheduled
+      td = f.date_select :scheduled
+    tr
+      td = f.label :start_time
+      td = f.time_select :start_time
+    tr
+      td = f.label :end_time
+      td = f.time_select :end_time
+    tr
+      td = f.label :address
+      td = f.text_field :address, size: 50
+    tr
+      td= f.label :banner_url
+      td = f.text_field :banner_url, size: 50
+    tr
+      td = f.label :description
+      td = f.text_area :description, size: "50x5"
+  br
+  .actions = f.submit 'Save'

@@ -1,0 +1,24 @@
+- @events.each do |event|
+  .well
+    h2 = event.name
+    b = event.scheduled.to_formatted_s(:concise)
+    br
+    i = event.address
+    br
+    - if event.banner_url.length > 0
+      img src=event.banner_url
+    br
+    = event.description
+    br
+    /= link_to 'Show', event, :class => 'btn btn-sm btn-default'
+    /|&nbsp;
+    - if user_signed_in?
+      = link_to 'Edit', edit_event_path(event), :class => 'btn btn-sm btn-default'
+      |&nbsp;
+      = link_to 'Delete', event, data: {:confirm => 'Are you sure?'}, :method => :delete, :class => 'btn btn-sm btn-danger'
+
+  br
+
+br
+- if user_signed_in?
+  = link_to 'New Event', new_event_path, class: 'btn btn-primary'

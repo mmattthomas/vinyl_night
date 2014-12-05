@@ -1,0 +1,20 @@
+.well
+  .authform
+    = form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
+      = devise_error_messages!
+      h3
+        | Register to be a member of Vinyl Night
+      .form_group
+        = f.label :email
+        = f.email_field :email, autofocus: true, required: true, class: 'form-control'
+      .form_group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form_group
+        = f.label :password
+        = f.password_field :password, class: 'form-control'
+      .form_group
+        = f.label :password_confirmation
+        = f.password_field :password_password_confirmation, class: 'form-control'
+      .actions[style="text-align:right"]
+        = f.submit 'Sign up', class: 'btn btn-primary'
