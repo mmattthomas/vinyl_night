@@ -3,8 +3,12 @@
     h2 = event.name
     b = event.scheduled.to_formatted_s(:concise)
     br
-    i = event.address
-    br
+    - if user_signed_in?
+      i = event.address
+      div style="text-align:right"
+        = "Start : #{event.start_time.strftime('%l:%M %p')}"
+        br
+        = "End : #{event.end_time.strftime('%l:%M %p')}"
     - if event.banner_url.length > 0
       img src=event.banner_url
     br

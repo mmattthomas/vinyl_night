@@ -21,7 +21,12 @@
       td = f.time_select :end_time
     tr
       td = f.label :address
-      td = f.text_field :address, size: 50
+      td
+        = f.text_field :address, size: 50
+        br
+        i
+          |Address &amp; Time not shown unless users are logged in
+
     tr
       td= f.label :banner_url
       td = f.text_field :banner_url, size: 50
