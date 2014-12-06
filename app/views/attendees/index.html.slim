@@ -1,0 +1,35 @@
+h1 Listing attendees
+
+table
+  thead
+    tr
+      th User
+      th Confirm status
+      th Bring vinyl
+      th Bring drinks
+      th Bring food
+      th Bring theparty
+      th Event
+      th Comments
+      th
+      th
+      th
+
+  tbody
+    - @attendees.each do |attendee|
+      tr
+        td = attendee.user_id
+        td = attendee.confirm_status
+        td = attendee.bring_vinyl
+        td = attendee.bring_drinks
+        td = attendee.bring_food
+        td = attendee.bring_theparty
+        td = attendee.event_id
+        td = attendee.comments
+        td = link_to 'Show', attendee
+        td = link_to 'Edit', edit_attendee_path(attendee)
+        td = link_to 'Destroy', attendee, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Attendee', new_attendee_path

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  confirm_status: MyString
+  bring_vinyl: false
+  bring_drinks: false
+  bring_food: false
+  bring_theparty: false
+  event_id: 1
+  comments: MyText
+
+two:
+  user_id: 1
+  confirm_status: MyString
+  bring_vinyl: false
+  bring_drinks: false
+  bring_food: false
+  bring_theparty: false
+  event_id: 1
+  comments: MyText

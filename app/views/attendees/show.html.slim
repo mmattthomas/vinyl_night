@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong User:
+  = @attendee.user_id
+p
+  strong Confirm status:
+  = @attendee.confirm_status
+p
+  strong Bring vinyl:
+  = @attendee.bring_vinyl
+p
+  strong Bring drinks:
+  = @attendee.bring_drinks
+p
+  strong Bring food:
+  = @attendee.bring_food
+p
+  strong Bring theparty:
+  = @attendee.bring_theparty
+p
+  strong Event:
+  = @attendee.event_id
+p
+  strong Comments:
+  = @attendee.comments
+
+= link_to 'Edit', edit_attendee_path(@attendee)
+'|
+= link_to 'Back', attendees_path
