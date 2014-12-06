@@ -1,6 +1,5 @@
 class AttendeesController < ApplicationController
   before_action :set_attendee, only: [:show, :edit, :update, :destroy]
-  before_action :set_event, only: [:new, :create]
   before_action :authenticate_user!
   respond_to :html
 
@@ -14,24 +13,34 @@ class AttendeesController < ApplicationController
   end
 
   def new
+    if params[:event_id]
+      @event = Event.find(params[:event_id])
+    end
     @attendee = Attendee.new
-    @attendee.user = current_user
+    puts ">>>>>>>>>>>>>>current user #{current_user.inspect}"
+    @attendee.user_id = current_user
     respond_with(@attendee)
   end
 
   def edit
+    if params[:event_id]
+      @event = Event.find(params[:event_id])
+    end
   end
 
   def create
     @attendee = Attendee.new(attendee_params)
-    @attendee.user = current_user
+
+    @attendee.user_id = current_user.id
+
     @attendee.save
-    respond_with(@attendee)
+    #@redirect_to events_path
+    respond_with(@attendee, :location => events_path)
   end
 
   def update
     @attendee.update(attendee_params)
-    respond_with(@attendee)
+    respond_with(@attendee, :location => events_path)
   end
 
   def destroy
@@ -42,12 +51,6 @@ class AttendeesController < ApplicationController
   private
     def set_attendee
       @attendee = Attendee.find(params[:id])
-    end
-
-    def set_event
-      if params[:event_id]
-        @event = Event.find(params[:event_id])
-      end
     end
 
     def attendee_params

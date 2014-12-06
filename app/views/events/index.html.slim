@@ -13,9 +13,20 @@
     /= link_to 'Show', event, :class => 'btn btn-sm btn-default'
     /|&nbsp;
     - if user_signed_in?
-      = link_to 'Edit', edit_event_path(event), :class => 'btn btn-sm btn-default'
-      |&nbsp;
-      = link_to 'Delete', event, data: {:confirm => 'Are you sure?'}, :method => :delete, :class => 'btn btn-sm btn-danger'
+      - if current_user == event.create_user
+        = link_to 'Edit', edit_event_path(event), :class => 'btn btn-sm btn-default'
+        |&nbsp;
+      - if event.attendees.for_user_id(current_user.id).blank?
+        = link_to 'Attend!', new_attendee_path(event_id: event.id), :class => 'btn btn-sm btn-default'
+      - else
+        - attendee = event.attendees.for_user_id(current_user.id).first
+        - if attendee.confirm_status.starts_with?("Yes")
+          = link_to 'I am attending', edit_attendee_path(id: attendee.id, event_id: event.id), :class => 'btn btn-sm btn-default'
+        - if attendee.confirm_status.starts_with?("Maybe")
+          = link_to 'I am attending', edit_attendee_path(id: attendee.id, event_id: event.id), :class => 'btn btn-sm btn-default'
+        - if attendee.confirm_status.starts_with?("No")
+          = link_to 'I am not attending', edit_attendee_path(id: attendee.id, event_id: event.id), :class => 'btn btn-sm btn-default'
+
 
   br
 
