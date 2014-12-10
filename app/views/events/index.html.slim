@@ -25,11 +25,14 @@
       - else
         - attendee = event.attendees.for_user_id(current_user.id).first
         - if attendee.confirm_status.starts_with?("Yes")
-          = link_to 'I am attending', edit_attendee_path(id: attendee.id, event_id: event.id), :class => 'btn btn-sm btn-default'
+          = link_to 'I am attending!', edit_attendee_path(id: attendee.id, event_id: event.id), :class => 'btn btn-sm btn-default'
         - if attendee.confirm_status.starts_with?("Maybe")
-          = link_to 'I am attending', edit_attendee_path(id: attendee.id, event_id: event.id), :class => 'btn btn-sm btn-default'
+          = link_to 'I might attend?', edit_attendee_path(id: attendee.id, event_id: event.id), :class => 'btn btn-sm btn-default'
         - if attendee.confirm_status.starts_with?("No")
           = link_to 'I am not attending', edit_attendee_path(id: attendee.id, event_id: event.id), :class => 'btn btn-sm btn-default'
+    - else
+      = link_to 'Attend!', new_attendee_path(event_id: event.id), :class => 'btn btn-sm btn-default'
+
 
 
   br

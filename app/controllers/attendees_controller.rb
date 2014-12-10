@@ -13,9 +13,12 @@ class AttendeesController < ApplicationController
   end
 
   def new
+    @event_name = "this awesome event"
     if params[:event_id]
       @event = Event.find(params[:event_id])
+      @event_name = @event.name
     end
+
     @attendee = Attendee.new
     puts ">>>>>>>>>>>>>>current user #{current_user.inspect}"
     @attendee.user_id = current_user
@@ -23,8 +26,10 @@ class AttendeesController < ApplicationController
   end
 
   def edit
+    @event_name = "this awesome event"
     if params[:event_id]
       @event = Event.find(params[:event_id])
+      @event_name = @event.name
     end
   end
 

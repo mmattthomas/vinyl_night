@@ -11,6 +11,10 @@ class EventsController < ApplicationController
   end
 
   def show
+    @attendees = @event.attendees
+    @respond_no_count = @event.attendees.responded_no.length
+    @respond_yes_count = @event.attendees.responded_yes.length
+    @respond_maybe_count = @event.attendees.responded_maybe.length
     respond_with(@event)
   end
 

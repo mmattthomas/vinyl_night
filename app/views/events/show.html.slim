@@ -1,28 +1,39 @@
 .well
   p#notice = notice
 
-  p
-    strong Name:
-    = @event.name
-  p
-    strong Create user:
-    = @event.create_user_id
-  p
-    strong Scheduled:
-    = @event.scheduled
-  p
-    strong Start time:
-    = @event.start_time
-  p
-    strong End time:
-    = @event.end_time
-  p
-    strong Address:
-    = @event.address
-  p
-    strong Description:
-    = @event.description
+  h2 = @event.name
+  b = @event.scheduled.to_formatted_s(:concise)
+  br
   - if user_signed_in?
-    = link_to 'Edit', edit_event_path(@event)
-    '|
-  = link_to 'Back', events_path
+    i = @event.address
+    div style="text-align:right"
+      = "Start : #{@event.start_time.strftime('%l:%M %p')}"
+      br
+      = "End : #{@event.end_time.strftime('%l:%M %p')}"
+  - if @event.banner_url.length > 0
+    img src=@event.banner_url
+  br
+  = @event.description
+  br
+  br
+  /= link_to 'Show', event, :class => 'btn btn-sm btn-default'
+  /|&nbsp;
+  - if user_signed_in?
+    - if current_user == @event.create_user
+      = link_to 'Edit', edit_event_path(@event), :class => 'btn btn-sm btn-default'
+      |&nbsp;
+    - if @event.attendees.for_user_id(current_user.id).blank?
+      = link_to 'Attend!', new_attendee_path(event_id: @event.id), :class => 'btn btn-sm btn-default'
+    - else
+      - attendee = @event.attendees.for_user_id(current_user.id).first
+      - if attendee.confirm_status.starts_with?("Yes")
+        = link_to 'I am attending!', edit_attendee_path(id: attendee.id, event_id: @event.id), :class => 'btn btn-sm btn-default'
+      - if attendee.confirm_status.starts_with?("Maybe")
+        = link_to 'I might attend?', edit_attendee_path(id: attendee.id, event_id: @event.id), :class => 'btn btn-sm btn-default'
+      - if attendee.confirm_status.starts_with?("No")
+        = link_to 'I am not attending', edit_attendee_path(id: attendee.id, event_id: @event.id), :class => 'btn btn-sm btn-default'
+  - else
+    = link_to 'Attend!', new_attendee_path(event_id: @event.id), :class => 'btn btn-sm btn-default'
+
+
+= link_to 'Back', events_path, :class => 'btn btn-sm btn-default'
