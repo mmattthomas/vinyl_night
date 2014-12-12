@@ -8,6 +8,13 @@ GIT
       railties (>= 3.2)
 
 GIT
+  remote: git://github.com/rorlab/summernote-rails.git
+  revision: 3277ae003d247f518f6a2e13462d4a5b91fd8dd9
+  specs:
+    summernote-rails (0.5.10.2)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 1d93c5a77049b3d21d17c847ad0531d7714fa229
   branch: bootstrap3
@@ -78,6 +85,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.2.2)
+    font-awesome-sass (4.2.2)
+      sass (~> 3.2)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -191,8 +200,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    turbolinks (2.3.0)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -209,6 +216,7 @@ DEPENDENCIES
   cancancan (~> 1.8)
   coffee-rails (= 4.0.1)
   devise
+  font-awesome-sass
   jbuilder (~> 2.0)
   jquery-rails (= 4.0.0.beta2)
   jquery-ui-rails (~> 4.2.1)
@@ -222,7 +230,7 @@ DEPENDENCIES
   sass-rails (= 5.0.0.beta1)
   sdoc (~> 0.4.0)
   slim-rails
+  summernote-rails!
   therubyracer
-  turbolinks (= 2.3.0)
   twitter-bootstrap-rails!
   uglifier (= 2.5.3)

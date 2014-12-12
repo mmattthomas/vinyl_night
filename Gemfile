@@ -11,7 +11,7 @@ gem 'coffee-rails',         '4.0.1'
 gem 'therubyracer',         platforms: :ruby
 gem 'jquery-rails',         '4.0.0.beta2'
 gem 'jquery-ui-rails',      '~> 4.2.1'
-gem 'turbolinks',           '2.3.0'
+#gem 'turbolinks',           '2.3.0'
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 gem 'less-rails'
 gem 'slim-rails'
@@ -20,6 +20,8 @@ gem 'cancancan',              '~> 1.8'
 gem 'mail'
 gem 'best_in_place', git: 'git://github.com/bernat/best_in_place.git', branch: 'master'
 gem 'jbuilder',               '~> 2.0'
+gem 'font-awesome-sass'
+gem "summernote-rails", github: 'rorlab/summernote-rails'
 
 group :development do
   gem 'pry-rails'

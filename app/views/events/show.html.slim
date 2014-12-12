@@ -13,7 +13,7 @@
   - if @event.banner_url.length > 0
     img src=@event.banner_url
   br
-  = @event.description
+  = @event.description.html_safe
   br
   br
   /= link_to 'Show', event, :class => 'btn btn-sm btn-default'

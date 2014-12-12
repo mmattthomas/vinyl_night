@@ -24,14 +24,16 @@
       td
         = f.text_field :address, size: 50
         br
+        br
         i
           |Address &amp; Time not shown unless users are logged in
+        br
 
     tr
       td= f.label :banner_url
       td = f.text_field :banner_url, size: 50
     tr
       td = f.label :description
-      td = f.text_area :description, size: "50x5"
+      td = f.text_area :description, size: "50x5", class: "summernote"
   br
   .actions = f.submit 'Save', :class => 'btn btn-sm btn-primary'
