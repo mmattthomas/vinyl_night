@@ -1,9 +1,4 @@
-javascript:
-	$(function() {$('.event_description').editable({inlineMode: false})});
-
 .well
-	h1 Edit this event
-
 	== render 'form'
 
 	= link_to 'Delete', @event, data: {:confirm => 'Are you sure?'}, :method => :delete, :class => 'btn btn-sm btn-danger'

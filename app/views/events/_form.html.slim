@@ -6,34 +6,47 @@
         - @event.errors.full_messages.each do |message|
           li = message
 
-  table
-    tr
-      td = f.label :name
-      td = f.text_field :name, size: 50
-    tr
-      td = f.label :scheduled
-      td = f.date_select :scheduled
-    tr
-      td = f.label :start_time
-      td = f.time_select :start_time
-    tr
-      td = f.label :end_time
-      td = f.time_select :end_time
-    tr
-      td = f.label :address
-      td
-        = f.text_field :address, size: 50
-        br
-        br
+  = f.label "Event Name"
+  = f.text_field :name, required: true, class: "bigevent-form-control"
+  br
+  = f.label "Event Details"
+  = f.text_area :description, class: "summernote"
+  br
+  = f.label "Background Image URL (optional)"
+  = f.text_field :banner_url, class: "event-form-control"
+  br
+  .container
+    .row
+      .col-md-6
         i
-          |Address &amp; Time not shown unless users are logged in
+          b
+            |The following information will be hidden from view unless the user logs in:
         br
-
-    tr
-      td= f.label :banner_url
-      td = f.text_field :banner_url, size: 50
-    tr
-      td = f.label :description
-      td = f.text_area :description, size: "50x5", class: "summernote"
+        br
+        = f.label "Happening On"
+        = f.date_field :scheduled, required: true, class: "date-form-control"
+      .col-md-6
+        |&nbsp;
+    .row
+      .col-md-6
+        br
+        = f.label :start_time
+        = f.time_field :start_time, required: true, class: "date-form-control"
+      .col-md-6
+        |&nbsp;
+    .row
+      .col-md-6
+        br
+        = f.label :end_time
+        = f.time_field :end_time, required: true, class: "date-form-control"
+      .col-md-6
+        |&nbsp;
+    .row
+      .col-md-6
+        br
+        = f.label :address
+        = f.text_field :address, required: true, class: "event-form-control"
+      .col-md-6
+        |&nbsp;
   br
   .actions = f.submit 'Save', :class => 'btn btn-sm btn-primary'

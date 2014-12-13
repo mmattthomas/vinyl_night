@@ -1,18 +1,22 @@
 - @events.each do |event|
   .well
-    h2 = event.name
-    b = event.scheduled.to_formatted_s(:concise)
+    - if user_signed_in?
+      h2 = link_to event.name, event_path(event)
+    - else
+      h2 = event.name
     br
     - if user_signed_in?
-      i = event.address
-      div style="text-align:right"
-        = "Start : #{event.start_time.strftime('%l:%M %p')}"
-        br
-        = "End : #{event.end_time.strftime('%l:%M %p')}"
-    - if event.banner_url.length > 0
-      img src=event.banner_url
+      .container
+        .row
+          .col-md-6
+            i = "<b>#{event.scheduled.to_formatted_s(:concise)}</b> @ #{event.address}".html_safe
+          .col-md-5 style="text-align:right"
+            = "Start : #{event.start_time.strftime('%l:%M %p')}"
+            br
+            = "End : #{event.end_time.strftime('%l:%M %p')}"
     br
-    = event.description
+    = event.description.html_safe
+    br
     br
     /= link_to 'Show', event, :class => 'btn btn-sm btn-default'
     /|&nbsp;
@@ -39,4 +43,4 @@
 
 br
 - if user_signed_in?
-  = link_to 'New Event', new_event_path, class: 'btn btn-primary'
+  = link_to 'Create a New Event!', new_event_path, class: 'btn btn-primary'
