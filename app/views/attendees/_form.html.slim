@@ -33,4 +33,7 @@
       td = f.label :comments
       td = f.text_area :comments, size: "50x5"
 
-  .actions = f.submit 'Save Response', :class => 'btn btn-sm btn-primary'
+  br
+  = f.submit 'Save Response', :class => 'btn btn-primary'
+  | &nbsp;
+  = link_to 'Cancel', event_path(@event), :class => 'btn btn-default'

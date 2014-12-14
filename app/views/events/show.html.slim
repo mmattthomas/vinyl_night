@@ -30,6 +30,5 @@
         = link_to 'I am not attending', edit_attendee_path(id: attendee.id, event_id: @event.id), :class => 'btn btn-default'
   - else
     = link_to 'Attend!', new_attendee_path(event_id: @event.id), :class => 'btn btn-default'
-
-
-= link_to 'Back', events_path, :class => 'btn btn-default'
+  |&nbsp;
+  = link_to 'Back', events_path, :class => 'btn btn-default'
