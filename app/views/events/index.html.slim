@@ -1,9 +1,6 @@
 - @events.each do |event|
   .well
-    - if user_signed_in?
-      h2 = link_to event.name, event_path(event)
-    - else
-      h2 = event.name
+    h2 = link_to event.name, event_path(event)
     br
     - if user_signed_in?
       .container
