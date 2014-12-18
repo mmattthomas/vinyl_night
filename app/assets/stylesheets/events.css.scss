@@ -61,3 +61,16 @@
 	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
+.status {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+.status .panel-title {
+	font-family: 'Oswald', sans-serif;
+	font-size: 72px;
+	font-weight: bold;
+	color: #fff;
+	line-height: 45px;
+	padding-top: 20px;
+	letter-spacing: -0.8px;
+}

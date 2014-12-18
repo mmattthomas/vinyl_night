@@ -30,5 +30,38 @@
         = link_to 'I am not attending', edit_attendee_path(id: attendee.id, event_id: @event.id), :class => 'btn btn-default'
   - else
     = link_to 'Attend!', new_attendee_path(event_id: @event.id), :class => 'btn btn-default'
-  |&nbsp;
-  = link_to 'Back', events_path, :class => 'btn btn-default'
+  br
+  br
+  - if user_signed_in?
+    ="#{@event.attendees.length} responses collected"
+    br
+    br
+    .container
+      .row
+        div class="col-xs-6 col-md-3"
+          .div class="panel-body text-center"
+            .div class="panel status panel-success"
+              .div class="panel-heading"
+                h1 ="GOING"
+              .div class="panel-body text-center"
+                - @event.attendees.responded_yes.each do |attendee_yes|
+                  strong = "#{attendee_yes.user.name}"
+                  br
+        div class="col-xs-6 col-md-3"
+          .div class="panel-body text-center"
+            .div class="panel status panel-warning"
+              .div class="panel-heading"
+                h1 ="MAYBE"
+              .div class="panel-body text-center"
+                - @event.attendees.responded_maybe.each do |attendee_maybe|
+                  strong = "#{attendee_maybe.user.name}"
+                  br
+        div class="col-xs-6 col-md-3"
+          .div class="panel-body text-center"
+            .div class="panel status panel-danger"
+              .div class="panel-heading"
+                h1 ="NOPE"
+              .div class="panel-body text-center"
+                - @event.attendees.responded_no.each do |attendee_no|
+                  strong = "#{attendee_no.user.name}"
+                  br

@@ -32,7 +32,8 @@
         - if attendee.confirm_status.starts_with?("No")
           = link_to 'I am not attending', edit_attendee_path(id: attendee.id, event_id: event.id), :class => 'btn btn-sm btn-default'
     - else
-      = link_to 'Attend!', new_attendee_path(event_id: event.id), :class => 'btn btn-sm btn-default'
+      = link_to 'Sign in and Attend!', new_attendee_path(event_id: event.id), :class => 'btn btn-sm btn-default'
+
 
 
 

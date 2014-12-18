@@ -40,12 +40,12 @@ class AttendeesController < ApplicationController
 
     @attendee.save
     #@redirect_to events_path
-    respond_with(@attendee, :location => events_path)
+    respond_with(@attendee, :location => event_path(@attendee.event))
   end
 
   def update
     @attendee.update(attendee_params)
-    respond_with(@attendee, :location => events_path)
+    respond_with(@attendee, :location => event_path(@attendee.event))
   end
 
   def destroy
