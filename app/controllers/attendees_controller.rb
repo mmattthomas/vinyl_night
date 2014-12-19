@@ -34,13 +34,20 @@ class AttendeesController < ApplicationController
   end
 
   def create
+
+    #Only create if it already exists:
+
     @attendee = Attendee.new(attendee_params)
-
-    @attendee.user_id = current_user.id
-
-    @attendee.save
-    #@redirect_to events_path
-    respond_with(@attendee, :location => event_path(@attendee.event))
+    event = @attendee.event
+    if event.attendees.for_user_id(current_user.id).blank?
+      @attendee.user_id = current_user.id
+      @attendee.save
+      respond_with(@attendee, :location => event_path(@attendee.event))
+    else
+      #attendance already exists...this can happen if clicking attend from not logged in:
+      flash[:danger] = 'You have already responded to this event!'
+      respond_with(@attendee, :location => event_path(@attendee.event))
+    end
   end
 
   def update

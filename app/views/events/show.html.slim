@@ -34,34 +34,60 @@
   br
   - if user_signed_in?
     ="#{@event.attendees.length} responses collected"
+
     br
     br
     .container
       .row
-        div class="col-xs-6 col-md-3"
-          .div class="panel-body text-center"
-            .div class="panel status panel-success"
-              .div class="panel-heading"
-                h1 ="GOING"
-              .div class="panel-body text-center"
-                - @event.attendees.responded_yes.each do |attendee_yes|
-                  strong = "#{attendee_yes.user.name}"
-                  br
-        div class="col-xs-6 col-md-3"
-          .div class="panel-body text-center"
-            .div class="panel status panel-warning"
-              .div class="panel-heading"
-                h1 ="MAYBE"
-              .div class="panel-body text-center"
-                - @event.attendees.responded_maybe.each do |attendee_maybe|
-                  strong = "#{attendee_maybe.user.name}"
-                  br
-        div class="col-xs-6 col-md-3"
-          .div class="panel-body text-center"
-            .div class="panel status panel-danger"
-              .div class="panel-heading"
-                h1 ="NOPE"
-              .div class="panel-body text-center"
-                - @event.attendees.responded_no.each do |attendee_no|
-                  strong = "#{attendee_no.user.name}"
-                  br
+        .div class="col-sm-3 col-md-3"
+          .div class="panel panel-default"
+            .div class="panel-heading"
+              h4 class="panel-title"
+                a data-toggle="collapse" data-parent="#accordion" href="#collapseYes"
+                  span class="fa fa-heart fa-lg" &nbsp;
+                  = "Going : #{@event.attendees.responded_yes.count}"
+            .div id="collapseYes" class="panel-collapse collapse"
+              - @event.attendees.responded_yes.each do |attendee_yes|
+                .div class="list-group"
+                    h4 class="list-group-item-heading"
+                      = "#{attendee_yes.user.name}"
+      .row
+        .div class="col-sm-3 col-md-3"
+          .div class="panel panel-default"
+            .div class="panel-heading"
+              h4 class="panel-title"
+                a data-toggle="collapse" data-parent="#accordion" href="#collapseMaybe"
+                  span class="fa fa-question-circle fa-lg" &nbsp;
+                  = "Maybe : #{@event.attendees.responded_maybe.count}"
+            .div id="collapseMaybe" class="panel-collapse collapse"
+              - @event.attendees.responded_maybe.each do |attendee_maybe|
+                .div class="list-group"
+                    h4 class="list-group-item-heading"
+                      = "#{attendee_maybe.user.name}"
+      .row
+        .div class="col-sm-3 col-md-3"
+          .div class="panel panel-default"
+            .div class="panel-heading"
+              h4 class="panel-title"
+                a data-toggle="collapse" data-parent="#accordion" href="#collapseNo"
+                  span class="fa fa-frown-o fa-lg" &nbsp;
+                  = "Not Going : #{@event.attendees.responded_no.count}"
+            .div id="collapseNo" class="panel-collapse collapse"
+              - @event.attendees.responded_no.each do |attendee_no|
+                .div class="list-group"
+                    h4 class="list-group-item-heading"
+                      = "#{attendee_no.user.name}"
+    - if @attendees.made_comment.count > 0
+      .container
+        - @attendees.made_comment.each do |comment|
+          .row
+            .div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+              .div class="offer offer-default"
+                .div class="shape"
+                  .div class="shape-text"
+                    = comment.user.name.slice(0).upcase
+                .div class="offer-content"
+                  h3 class="lead"
+                    = comment.comments
+                  p
+                    = "-#{comment.user.name}"

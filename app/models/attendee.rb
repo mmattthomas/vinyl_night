@@ -9,5 +9,5 @@ class Attendee < ActiveRecord::Base
 	scope :responded_yes, lambda { where(["substring(confirm_status from 1 for 1) = 'Y'"])}
 	scope :responded_no, lambda { where(["substring(confirm_status from 1 for 1) = 'N'"])}
 	scope :responded_maybe, lambda { where(["substring(confirm_status from 1 for 1) = 'M'"])}
-
+	scope :made_comment, lambda { where("COALESCE(comments, '') <> ''")}
 end
